@@ -1,7 +1,28 @@
- my name is shubham
-  1 my name is shubham
-  2 my name is shubham
-  3 my name is shubham
-  4 my name is shubham
-  5 my name is shubham
-  6 my name is shubham
+pipeline {
+  agent any
+    
+  tools {demojs "node"}
+    
+  stages {
+        
+    stage('Git') {
+      steps {
+        git 'https://github.com/shubhamphade/shubhamphade-jenkins.git'
+      }
+    }
+     
+    stage('Build') {
+      steps {
+        sh 'npm install'
+         sh '<<Build Command>>'
+      }
+    }  
+    
+            
+    stage('Test') {
+      steps {
+        sh 'node test'
+      }
+    }
+  }
+}
